@@ -72,4 +72,5 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 !lib
+!go.mod
 
