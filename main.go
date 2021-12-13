@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/sirupsen/logrus"
 	"net"
-	_ "vgo/log"
 	"vgo/service"
+	_ "vgo/vlog"
 )
 
 func main() {

@@ -7,7 +7,7 @@ import (
 	"io"
 	"net"
 	"vgo/lib"
-	_ "vgo/log"
+	_ "vgo/vlog"
 )
 
 // HandleConn 处理连接

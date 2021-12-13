@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 	"vgo/lib"
-	_ "vgo/log"
+	_ "vgo/vlog"
 )
 
 func Test_Tcp(t *testing.T) {
