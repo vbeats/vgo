@@ -1,14 +1,10 @@
 package main
 
 import (
+	"github.com/sirupsen/logrus"
 	_ "vgo/vlog"
-	"vgo/vnet"
 )
 
 func main() {
-	s := &vnet.Server{Host: "127.0.0.1", Port: 9966}
-
-	go s.Start()
-
-	select {}
+	logrus.Info("hello....")
 }
