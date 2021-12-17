@@ -8,9 +8,14 @@ import (
 	"io"
 	"net"
 	"strconv"
+	"sync"
 	"time"
 	_ "vgo/vlog"
 )
+
+var total int32 = 0 // client连接总数
+
+var lock sync.Mutex
 
 // Server tcp server
 type Server struct {
@@ -25,7 +30,7 @@ func (s *Server) Start() {
 		panic(err)
 	}
 
-	logrus.Info("server start... listen on port: ", s.Port)
+	logrus.Infof("server start... listen on port: %d", s.Port)
 
 	for {
 		conn, err := server.Accept()
@@ -38,7 +43,10 @@ func (s *Server) Start() {
 
 // 处理连接
 func handleClientConn(conn *Connection) {
-	logrus.Info("客户端建立连接...", (*conn.Conn).RemoteAddr())
+	lock.Lock()
+	total += 1
+	lock.Unlock()
+	logrus.Infof("客户端: %s 建立连接 当前连接总数: %d", (*conn.Conn).RemoteAddr(), total)
 
 	conn.Ctx, conn.Cancel = context.WithCancel(context.Background())
 
@@ -48,7 +56,10 @@ func handleClientConn(conn *Connection) {
 	for {
 		select {
 		case <-conn.Ctx.Done(): // 关闭连接
-			logrus.Info("客户端断开连接....", (*conn.Conn).RemoteAddr())
+			lock.Lock()
+			total -= 1
+			lock.Unlock()
+			logrus.Infof("客户端: %s 断开连接 当前连接总数: %d", (*conn.Conn).RemoteAddr(), total)
 			return
 		default:
 			time.Sleep(1 * time.Second)
@@ -75,7 +86,7 @@ func (c *Connection) sendClientMsg(msg Msg) {
 		_, err := (*c.Conn).Write(buff.Bytes())
 
 		if err != nil {
-			logrus.Error("向客户端写数据异常", (*c.Conn).RemoteAddr(), err)
+			logrus.Errorf("向客户端: %s 写数据异常... %s", (*c.Conn).RemoteAddr(), err)
 			c.ErrTimes += 1
 			if c.ErrTimes > 3 { // 写超时超过3次断开tcp连接
 				c.Cancel()
@@ -94,7 +105,7 @@ func (c *Connection) readClientMsg(msg *Msg) {
 		buff := make([]byte, 4)
 		n, err := io.ReadFull(*c.Conn, buff)
 		if err != nil {
-			logrus.Error("接收客户端数据异常...", err)
+			logrus.Errorf("接收客户端: %s 数据异常... %s", (*c.Conn).RemoteAddr(), err)
 			return
 		}
 
@@ -107,7 +118,7 @@ func (c *Connection) readClientMsg(msg *Msg) {
 
 			msg.Data = data
 
-			logrus.Info("收到客户端消息: ", string(msg.Data))
+			logrus.Infof("收到客户端: %s 消息: %s", (*c.Conn).RemoteAddr(), string(msg.Data))
 		}
 	}
 }
