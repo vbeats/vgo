@@ -21,7 +21,7 @@ func (c *Client) Start(host string, port int) {
 		client, _ := net.ResolveTCPAddr("tcp", host+":"+strconv.Itoa(port))
 		conn, err := net.DialTCP("tcp", nil, client)
 		if err != nil {
-			logrus.Error("客户端连接失败...等待重试...", err)
+			logrus.Error("TCP连接失败, 等待5s重试...", err)
 			time.Sleep(5 * time.Second)
 			continue
 		}
@@ -34,7 +34,7 @@ func (c *Client) Start(host string, port int) {
 
 // 处理连接
 func handleServerConn(conn *Connection) {
-	logrus.Info("client 连接上server端...", (*conn.TcpConn).RemoteAddr())
+	logrus.Infof("client连接上server端 : %s", (*conn.TcpConn).RemoteAddr())
 
 	conn.Ctx, conn.Cancel = context.WithCancel(context.Background())
 	defer (*conn.TcpConn).Close()
@@ -70,7 +70,7 @@ func (c *Connection) sendServerMsg(msg Msg) {
 		_, err := (*c.TcpConn).Write(buff.Bytes())
 
 		if err != nil {
-			logrus.Error("向服务端写数据异常", (*c.TcpConn).RemoteAddr(), err)
+			logrus.Error("向服务端写数据异常...", err)
 			c.ErrTimes += 1
 			if c.ErrTimes > 3 { // 写超时超过3次断开tcp连接
 				c.Cancel()
