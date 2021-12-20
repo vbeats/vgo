@@ -7,12 +7,10 @@ import (
 )
 
 func Test_TcpClient(t *testing.T) {
-	for i := 0; i < 100; i++ {
-		go func() {
-			c := &vnet.Client{}
-			c.Start("127.0.0.1", 9966)
-		}()
-	}
+	go func() {
+		c := &vnet.Client{}
+		c.Start("127.0.0.1", 9966)
+	}()
 	select {}
 }
 
