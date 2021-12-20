@@ -55,3 +55,16 @@ ERRO[2021-12-17 20:59:59] 接收客户端: 127.0.0.1:12616 数据异常... read 
 ERRO[2021-12-17 21:00:00] 向客户端: 127.0.0.1:12616 写数据异常... write tcp 127.0.0.1:9966->127.0.0.1:12616: wsasend: Anexisting connection was forcibly closed by the remote host. 
 INFO[2021-12-17 21:00:00] 客户端: 127.0.0.1:12616 断开连接....   
 ```
+
+## Demo
+
+<table>
+    <tr>
+        <td><img src="https://cdn.jsdelivr.net/gh/boot-vue/pics@main/vgo/1.png"></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/boot-vue/pics@main/vgo/2.png"></td>
+    </tr>
+    <tr>
+        <td><img src="https://cdn.jsdelivr.net/gh/boot-vue/pics@main/vgo/3.png"></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/boot-vue/pics@main/vgo/4.png"></td>
+    </tr>
+</table>
