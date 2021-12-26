@@ -56,6 +56,37 @@ ERRO[2021-12-17 21:00:00] 向客户端: 127.0.0.1:12616 写数据异常... write
 INFO[2021-12-17 21:00:00] 客户端: 127.0.0.1:12616 断开连接....   
 ```
 
+## MQTT
+
+`vmqtt/client`
+
+> 暂时只支持 v3 mqtt broker通信 v5用netty吧 ^_^
+
+```log
+INFO[2021-12-26 16:41:45] 收到mqtt broker的消息: {
+  "msg": "哈哈"
+}          
+INFO[2021-12-26 16:41:46] mqtt client topic: xx send msg 2021-12-26 16:41:46 
+INFO[2021-12-26 16:41:46] 收到mqtt broker的消息: 2021-12-26 16:41:46        
+INFO[2021-12-26 16:41:48] mqtt client topic: xx send msg 2021-12-26 16:41:48 
+INFO[2021-12-26 16:41:48] 收到mqtt broker的消息: 2021-12-26 16:41:48        
+INFO[2021-12-26 16:41:50] 收到mqtt broker的消息: {
+  "msg": "哈哈"
+}          
+INFO[2021-12-26 16:41:50] mqtt client topic: xx send msg 2021-12-26 16:41:50 
+INFO[2021-12-26 16:41:50] 收到mqtt broker的消息: 2021-12-26 16:41:50        
+INFO[2021-12-26 16:41:52] mqtt client topic: xx send msg 2021-12-26 16:41:52 
+INFO[2021-12-26 16:41:52] 收到mqtt broker的消息: 2021-12-26 16:41:52        
+INFO[2021-12-26 16:41:54] mqtt client topic: xx send msg 2021-12-26 16:41:54 
+INFO[2021-12-26 16:41:54] 收到mqtt broker的消息: 2021-12-26 16:41:54        
+INFO[2021-12-26 16:41:56] mqtt client topic: xx send msg 2021-12-26 16:41:56 
+INFO[2021-12-26 16:41:56] 收到mqtt broker的消息: 2021-12-26 16:41:56        
+INFO[2021-12-26 16:41:58] mqtt client topic: xx send msg 2021-12-26 16:41:58 
+INFO[2021-12-26 16:41:58] 收到mqtt broker的消息: 2021-12-26 16:41:58        
+INFO[2021-12-26 16:42:00] mqtt client topic: xx send msg 2021-12-26 16:42:00 
+INFO[2021-12-26 16:42:00] 收到mqtt broker的消息: 2021-12-26 16:42:00
+```
+
 ## Demo
 
 <table>
@@ -66,5 +97,9 @@ INFO[2021-12-17 21:00:00] 客户端: 127.0.0.1:12616 断开连接....
     <tr>
         <td><img src="https://cdn.jsdelivr.net/gh/boot-vue/pics@main/vgo/3.png"></td>
         <td><img src="https://cdn.jsdelivr.net/gh/boot-vue/pics@main/vgo/4.png"></td>
+    </tr>
+    <tr>
+        <td><img src="https://cdn.jsdelivr.net/gh/boot-vue/pics@main/vgo/5.png"></td>
+        <td><img src="https://cdn.jsdelivr.net/gh/boot-vue/pics@main/vgo/6.png"></td>
     </tr>
 </table>
