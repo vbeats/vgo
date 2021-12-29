@@ -1,5 +1,7 @@
 # vgo
 
+![Alt](https://repobeats.axiom.co/api/embed/49486021f77472fae875ae23605bac322be358ca.svg "Repobeats analytics image")
+
 ## Next Plan
 
 - [ ] MQTT client
